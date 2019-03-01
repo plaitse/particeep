@@ -1,0 +1,51 @@
+.Movie {
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  margin: 15px 15px 15px 15px;
+
+  border: 1px solid #000;
+  border-radius: 2px;
+}
+
+.Movie h2 {
+  font-family: Baskerville;
+}
+
+.Image {
+  height: 200px;
+
+  background-color: red;
+}
+
+.Content {
+  padding: 0 20px 10px 20px;
+}
+
+.Wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Likes {
+  display: flex;
+}
+
+.Likes p:first-child {
+  margin-right: 10px;
+}
+
+.Footer {
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 10px 0 10px 0;
+}
+
+.Button {
+  padding: 10px;
+
+  border: 1px solid #000;
+  border-radius: 5px;
+}
