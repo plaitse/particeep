@@ -10,6 +10,8 @@
 }
 
 .Movie h2 {
+  margin-bottom: 10px;
+
   font-family: Baskerville;
 }
 
@@ -20,32 +22,38 @@
 }
 
 .Content {
-  padding: 0 20px 10px 20px;
+  padding: 15px 20px 10px 20px;
 }
 
 .Wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  padding: 25px 0 10px 0;
 }
 
 .Likes {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.Likes p:first-child {
-  margin-right: 10px;
+meter {
+  width: 120px;
+  height: 8px;
+  margin-bottom: 8px;
 }
 
-.Footer {
+.Numbers {
   display: flex;
-  justify-content: flex-end;
 
-  padding: 10px 0 10px 0;
-}
+  font-size: 11px;
+} 
 
 .Button {
   padding: 10px;
 
   border: 1px solid #000;
-  border-radius: 5px;
+  border-radius: 3px;
 }

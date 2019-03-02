@@ -7,14 +7,19 @@ const movie = (props) => (
     <div className={styles.Image}></div>
     <div className={styles.Content}>
       <h2>{props.title}</h2>
+      <p>{props.category}</p>
       <div className={styles.Wrapper}>
-        <p>{props.category}</p>
         <div className={styles.Likes}>
-          <p>{props.likes} likes</p>
-          <p>{props.dislikes} dislikes</p>
+          <meter id="fuel" name="fuel"
+            min="0" max="100"
+            low="33" high="66" optimum="80"
+            value="20">
+            at 50/100
+          </meter>
+          <div className={styles.Numbers}>
+            <p>{props.likes} likes - {props.dislikes} dislikes</p>
+          </div>
         </div>
-      </div>
-      <div className={styles.Footer}>
         <button className={styles.Button}>Like</button>
       </div>
     </div>
