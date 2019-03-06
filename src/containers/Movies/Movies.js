@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Container from '../../components/Container/Container';
-import Movie from '../../components/Movie/Movie';
+import Movie from './Movie/Movie';
 import movies$ from '../../movies';
 import style from './Movies.module.css';
 
