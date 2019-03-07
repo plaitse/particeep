@@ -1,0 +1,20 @@
+.Likes {
+  display: flex;
+  align-items: center;
+}
+
+.Likes:first-child {
+  margin-right: 25px;
+}
+
+.Button,
+.Focus {
+  margin-right: 10px;
+
+  cursor: pointer;
+}
+
+.Button:hover path,
+.Focus path {
+  fill: red;
+}

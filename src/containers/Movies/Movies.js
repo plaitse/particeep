@@ -14,6 +14,8 @@ class Movies extends Component {
     this.setState({movies: movies$});
   }
 
+  calculatePercentage = (likes, dislikes) =>  `${Math.round(likes / (likes + dislikes) * 100)}%`;
+
   render () {
     const movies = this.state.movies.map(movie => (
       <Movie
@@ -21,7 +23,8 @@ class Movies extends Component {
         title={movie.title}
         category={movie.category}
         likes={movie.likes}
-        dislikes={movie.dislikes} />
+        dislikes={movie.dislikes}
+        percentage={this.calculatePercentage(movie.likes, movie.dislikes)} />
     ));
 
     return (

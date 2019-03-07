@@ -27,72 +27,17 @@
 
 .Wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 
+  width: fit-content;
   padding: 25px 0 10px 0;
 }
 
-.Likes {
+/* --- Opinion ---- */
+
+.Opinion {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+  justify-content: space-between;
 
-meter {
-  width: 120px;
-  height: 8px;
-  margin-bottom: 8px;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border-radius: 3px;
-  /* Firefox */
-  background: none; /* Required to get rid of the default background prop. */
-  background-color: whiteSmoke;  
-}
-
-meter::-webkit-meter-bar {
-  background: none; /* Important to get rid of default background. */
-  background-color: whiteSmoke;
-}
-
-.Gauge {
-  width: 120px;
-  height: 8px;
-
-  background-color: #f9f9f9;
-  border-radius: 3px;
-  box-shadow: 0 3px 5px -5px #000 inset;
-}
-
-.Gauge > span {
-  height: inherit;
-  background-color: blue;  
-  display: block;
-}
-
-.Numbers {
-  display: flex;
-
-  font-size: 11px;
-} 
-
-.Button,
-.Liked {
-  padding: 10px;
-
-  border: 1px solid #000;
-  border-radius: 3px;
-  outline: none;
-
-  cursor: pointer;
-}
-
-.Button:hover,
-.Liked {
-  background-color: red;
-  color: white;
-  border-color: red;
-  outline: none;
+  margin-bottom: 10px;
 }

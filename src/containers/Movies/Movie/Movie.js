@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 
+import Likes from '../../../components/Opinion/Likes/Likes';
+import Meter from '../../../components/Opinion/Meter/Meter';
 import styles from './Movie.module.css';
 
 class Movie extends Component {
   state = {
     likes: this.props.likes,
     dislikes: this.props.dislikes,
-    liked: false
+    liked: false,
+    disliked: false,
+    percentage: this.props.percentage
   }
-
-  // Add button dislike -> disable button like
 
   likeHandler = () => {
     if (this.state.liked) {
@@ -20,7 +22,10 @@ class Movie extends Component {
       };
       updatedLikes = updatedCount;
       this.setState({likes: updatedLikes, liked: !this.state.liked});
+      this.updatePercentageHandler(updatedLikes, this.state.dislikes);
     } else {
+      // If already disliked remove dislike
+      if (this.state.disliked) this.dislikeHandler();
       const oldCount = this.state.likes;
       const updatedCount = oldCount + 1;
       let updatedLikes = {
@@ -28,38 +33,65 @@ class Movie extends Component {
       };
       updatedLikes = updatedCount;
       this.setState({likes: updatedLikes, liked: !this.state.liked});
+      this.updatePercentageHandler(updatedLikes, this.state.dislikes);
     }
   }
 
-  render () {
-    // Determine gauge meter bar percentage
-    let value = '0%';
-    if (this.props.likes >= 1 && this.props.likes < 10) value = '5%';
-    if (this.props.likes >= 10 && this.props.likes < 100) value = '10%';
-    if (this.props.likes >= 100 && this.props.likes < 1000) value = '50%';
-    if (this.props.likes >= 1000) value = '100%';
+  dislikeHandler = () => {
+    if (this.state.disliked) {
+      const oldCount = this.state.dislikes;
+      const updatedCount = oldCount - 1;
+      let updatedDislikes = {
+        ...this.state.dislikes
+      };
+      updatedDislikes = updatedCount;
+      this.setState({dislikes: updatedDislikes, disliked: !this.state.disliked});
+      this.updatePercentageHandler(this.state.likes, updatedDislikes);
+    } else {
+      // If already liked remove like
+      if (this.state.liked) this.likeHandler();
+      const oldCount = this.state.dislikes;
+      const updatedCount = oldCount + 1;
+      let updatedDislikes = {
+        ...this.state.dislikes
+      };
+      updatedDislikes = updatedCount;
+      this.setState({dislikes: updatedDislikes, disliked: !this.state.disliked});
+      this.updatePercentageHandler(this.state.likes, updatedDislikes);
+    }
+  }
 
+  updatePercentageHandler = (likes, dislikes) => {
+    const updatedPercentage = `${Math.round(likes / (likes + dislikes) * 100)}%`;
+    this.setState({percentage: updatedPercentage})
+  }
+
+  formatNumber = (number) => number >= 1000 ? (number / 1000).toFixed(1) + ' K' : number;
+
+  render () {
     return (
       <div className={styles.Movie} id={this.props.id}>
         <div className={styles.Image}></div>
+        
         <div className={styles.Content}>
           <h2>{this.props.title}</h2>
           <p>{this.props.category}</p>
+
           <div className={styles.Wrapper}>
-            <div className={styles.Likes}>
-              <meter id="likes" name="likes" min="0" max="100">
-                <div className={styles.Gauge}>
-                  <span style={{width: value}}></span>
-                </div>
-              </meter>
-              <div className={styles.Numbers}>
-                <p>{this.state.likes} likes - {this.state.dislikes} dislikes</p>
-              </div>
+            <div className={styles.Opinion}>
+              <Likes
+                opinion="like"
+                liked={this.state.liked}
+                liking={this.likeHandler}
+                likes={this.formatNumber(this.state.likes)} />
+              <Likes
+                opinion="dislike"
+                liked={this.state.disliked}
+                liking={this.dislikeHandler}
+                likes={this.formatNumber(this.state.dislikes)}/>
             </div>
-            <button
-              className={this.state.liked ? styles.Liked : styles.Button }
-              onClick={this.likeHandler}
-              >Like</button>
+
+            <Meter percentage={this.state.percentage} />
           </div>
         </div>
       </div>
