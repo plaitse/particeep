@@ -5,20 +5,30 @@ import styles from './Movie.module.css';
 class Movie extends Component {
   state = {
     likes: this.props.likes,
-    dislikes: this.props.dislikes
+    dislikes: this.props.dislikes,
+    liked: false
   }
 
-  addLikeHandler = () => {
-    console.log('test');
-    console.log('likes : ', this.props.likes);
-    console.log('dislikes : ', this.props.dislikes);
-    const oldCount = this.state.likes;
-    const updatedCount = oldCount + 1;
-    let updatedLikes = {
-      ...this.state.likes
-    };
-    updatedLikes = updatedCount;
-    this.setState({likes: updatedLikes});
+  // Add button dislike -> disable button like
+
+  likeHandler = () => {
+    if (this.state.liked) {
+      const oldCount = this.state.likes;
+      const updatedCount = oldCount - 1;
+      let updatedLikes = {
+        ...this.state.likes
+      };
+      updatedLikes = updatedCount;
+      this.setState({likes: updatedLikes, liked: !this.state.liked});
+    } else {
+      const oldCount = this.state.likes;
+      const updatedCount = oldCount + 1;
+      let updatedLikes = {
+        ...this.state.likes
+      };
+      updatedLikes = updatedCount;
+      this.setState({likes: updatedLikes, liked: !this.state.liked});
+    }
   }
 
   render () {
@@ -43,12 +53,13 @@ class Movie extends Component {
                 </div>
               </meter>
               <div className={styles.Numbers}>
-                <p>{this.props.likes} likes - {this.props.dislikes} dislikes</p>
+                <p>{this.state.likes} likes - {this.state.dislikes} dislikes</p>
               </div>
             </div>
             <button
-              className={styles.Button}
-              onClick={this.addLikeHandler}>Like</button>
+              className={this.state.liked ? styles.Liked : styles.Button }
+              onClick={this.likeHandler}
+              >Like</button>
           </div>
         </div>
       </div>

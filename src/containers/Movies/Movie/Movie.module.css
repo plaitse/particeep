@@ -78,7 +78,8 @@ meter::-webkit-meter-bar {
   font-size: 11px;
 } 
 
-.Button {
+.Button,
+.Liked {
   padding: 10px;
 
   border: 1px solid #000;
@@ -88,7 +89,8 @@ meter::-webkit-meter-bar {
   cursor: pointer;
 }
 
-.Button:hover {
+.Button:hover,
+.Liked {
   background-color: red;
   color: white;
   border-color: red;
