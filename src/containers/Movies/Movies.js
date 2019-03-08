@@ -31,7 +31,7 @@ class Movies extends Component {
 
   render () {
     let movies = this.state.movies.map(movie => {
-      const color = `#ff00${Math.floor(Math.random() * 9)}0`
+      const color = `#ff00${Math.floor(Math.random() * 9)}0`;
       if (this.state.categorySelected === 'All' || this.state.categorySelected === movie.category) {
         return (
           <Movie
@@ -47,7 +47,7 @@ class Movies extends Component {
         return null;
       }
     });
-    if (movies == null) movies = <p>No movies were found.</p>
+    if (movies == null) movies = <p>No movies were found.</p>;
 
     const options = this.state.categories.map(category => (
       <option
