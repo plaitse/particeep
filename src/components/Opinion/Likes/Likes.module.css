@@ -16,5 +16,5 @@
 
 .Button:hover path,
 .Focus path {
-  fill: red;
+  fill: #4c4cff;
 }

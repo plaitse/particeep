@@ -27,7 +27,7 @@ meter::-webkit-meter-bar {
 
 .Gauge > span {
   height: inherit;
-  background-color: blue;  
+  background-color: #4c4cff;
   display: block;
 }
 

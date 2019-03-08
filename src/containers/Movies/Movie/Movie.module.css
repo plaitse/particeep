@@ -1,12 +1,20 @@
 .Movie {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   width: 300px;
   margin: 15px 15px 15px 15px;
 
-  border: 1px solid #000;
+  /* border: 1px solid #ccc; */
   border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.Movie:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .Movie h2 {
@@ -17,8 +25,24 @@
 
 .Image {
   height: 200px;
+}
 
-  background-color: red;
+.Remove {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width:20px;
+
+  cursor: pointer;
+}
+
+.Remove path {
+  fill: white;
+}
+
+.Remove:hover path {
+  fill: black;
 }
 
 .Content {
@@ -32,8 +56,6 @@
   width: fit-content;
   padding: 25px 0 10px 0;
 }
-
-/* --- Opinion ---- */
 
 .Opinion {
   display: flex;

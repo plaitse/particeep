@@ -10,7 +10,8 @@ class Movie extends Component {
     dislikes: this.props.dislikes,
     liked: false,
     disliked: false,
-    percentage: this.props.percentage
+    percentage: this.props.percentage,
+    removed: false
   }
 
   likeHandler = () => {
@@ -66,12 +67,20 @@ class Movie extends Component {
     this.setState({percentage: updatedPercentage})
   }
 
+  removeMovieHandler = () => this.setState({removed: !this.state.removed});
+
   formatNumber = (number) => number >= 1000 ? (number / 1000).toFixed(1) + ' K' : number;
 
   render () {
-    return (
+    let movie = (
       <div className={styles.Movie} id={this.props.id}>
-        <div className={styles.Image}></div>
+        <div className={styles.Image} style={{backgroundColor: this.props.color}}></div>
+        <svg
+          className={styles.Remove}
+          onClick={this.removeMovieHandler}
+          viewBox="0 0 191.414 191.414">
+          <path d="M107.888,96.142l80.916-80.916c3.48-3.48,3.48-8.701,0-12.181s-8.701-3.48-12.181,0L95.707,83.961L14.791,3.045   c-3.48-3.48-8.701-3.48-12.181,0s-3.48,8.701,0,12.181l80.915,80.916L2.61,177.057c-3.48,3.48-3.48,8.701,0,12.181   c1.74,1.74,5.22,1.74,6.96,1.74s5.22,0,5.22-1.74l80.916-80.916l80.916,80.916c1.74,1.74,5.22,1.74,6.96,1.74   c1.74,0,5.22,0,5.22-1.74c3.48-3.48,3.48-8.701,0-12.181L107.888,96.142z"/>
+        </svg>
         
         <div className={styles.Content}>
           <h2>{this.props.title}</h2>
@@ -95,6 +104,12 @@ class Movie extends Component {
           </div>
         </div>
       </div>
+    );
+
+    if (this.state.removed) movie = null;
+
+    return (
+      movie
     );
   }
 };
